@@ -1,33 +1,40 @@
-# IoT Monitoring System
+# Banking Backend System (Spring Boot)
 
-This project is a personal IoT backend system that collects sensor data from microcontrollers (e.g., Arduino, ESP32) and processes it through a Spring Boot REST API. It includes basic functionality for storing and retrieving sensor logs, as well as device registration. The goal was to understand the data flow between hardware and software in a full IoT pipeline.
+This is a backend banking application built with Spring Boot. It simulates core banking operations such as account creation, balance updates, and fund transfers. The application uses an H2 in-memory database to persist user account data and is designed to demonstrate a basic service-controller-repository architecture.
 
-## Project Overview
+## Features
 
-- Collects real-time data from IoT devices using HTTP requests (or MQTT if extended).
-- REST API built with Spring Boot handles incoming data and stores it.
-- Data is persisted using H2 (in-memory) or MySQL (for persistent storage).
-- Simple dashboard or Postman can be used to test API endpoints and view data.
-- Modular design allows for easy expansion into real-world applications.
+- User sign-up with username, password, email, and initial balance
+- Deposit functionality to increase account balance
+- Fund transfer between registered users
+- Basic error handling for invalid user IDs and insufficient funds
+- RESTful API design using Spring Web and Spring Data JPA
 
 ## Technologies Used
 
 - Java 17
-- Spring Boot (Web, JPA)
-- H2 Database / MySQL
-- Arduino IDE + C++ (for device code)
-- Postman (for API testing)
+- Spring Boot
+  - Spring Web
+  - Spring Data JPA
+- H2 Database (in-memory)
+- Maven
 
-## Features
+## API Endpoints
 
-- Device registration endpoint
-- Sensor data logging endpoint (temperature, humidity, etc.)
-- Retrieve device-specific data
-- In-memory or persistent SQL storage
-- Structured using controller/service/repository layers
+| Method | Endpoint               | Description                         |
+|--------|------------------------|-------------------------------------|
+| POST   | `/api/account/signUp`       | Create a new user account           |
+| POST   | `/api/account/updateBalance`| Deposit funds into an account       |
+| POST   | `/api/account/fundTransfer` | Transfer funds between two users    |
+| GET    | `/api/account/demo`         | Simple GET test with query param    |
 
-## Sample Endpoints
+## Example JSON Requests
 
-- `POST /api/device/register` – register a new device
-- `POST /api/device/data` – log sensor data
-- `GET /api/device/logs/{deviceId}` – fetch historical data for a device
+**Sign Up:**
+```json
+{
+  "userName": "alice",
+  "password": "secure123",
+  "email": "alice@example.com",
+  "balance": 500.0
+}
