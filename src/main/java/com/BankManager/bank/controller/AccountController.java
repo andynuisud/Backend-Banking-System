@@ -13,12 +13,12 @@ import java.util.Optional;
 @RequestMapping("/api/account")
 public class AccountController {
 
-    @Autowired
+    @Autowired // Begins the dependancy injection 
     private UserRepository userRepository;
 
-    @PostMapping("/signUp")
-    public String signUp(@RequestBody User user) {
-        userRepository.save(user);
+    @PostMapping("/signUp") // When a post request is sent on this endpoint, the method below is then executed
+    public String signUp(@RequestBody User user) { // The parameter reads the json data and serializes it into an object
+        userRepository.save(user); 
         return "User registered: " + user.getUserName();
     }
 
@@ -40,7 +40,7 @@ public class AccountController {
         return "New user balance is " + newBalance;
     }
 
-    @PostMapping("/fundTransfer")
+    @PostMapping("/fundTransfer") //
     public String fundTransfer(@RequestBody FundTransfer request){
         Optional<User> sender = userRepository.findById(request.getSender());
         Optional<User> recipiant = userRepository.findById(request.getRecipiant());

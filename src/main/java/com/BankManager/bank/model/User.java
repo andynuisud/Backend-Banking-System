@@ -2,8 +2,8 @@ package com.BankManager.bank.model;
 
 import jakarta.persistence.*;
 
-@Entity
-@Table(name = "Users")
+@Entity // Marks the entire class as a JPA Entity and can be accessed through it
+@Table(name = "Users") // Maps the user class to the Users table on h2
 public class User {
 
     @Id
